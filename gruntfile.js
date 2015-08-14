@@ -6,6 +6,7 @@ module.exports = function (grunt) {
 
         clean: ['E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/index.html',
                 'E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/css',
+                'E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/js/perfmatters.js',
                 'E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/views/images/pizzeria.jpg',
                 'E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/views/images/scaled/pizzeria.jpg',
                 'E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/views/images/small/pizzeria.jpg',
@@ -20,6 +21,14 @@ module.exports = function (grunt) {
                     dest: 'css',
                     ext: '.min.css'
                 }]
+            }
+        },
+
+        uglify: {
+            my_target: {
+                files: {
+                    'js/perfmatters.min.js': ['js-src/perfmatters.js']
+                }
             }
         },
 
@@ -72,7 +81,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-image-resize');
     grunt.loadNpmTasks('grunt-image');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-critical');
 
-    grunt.registerTask('default', ['clean', 'image_resize', 'image', 'cssmin', 'critical']);
+    grunt.registerTask('default', ['clean', 'image_resize', 'image', 'cssmin', 'uglify', 'critical']);
 };
