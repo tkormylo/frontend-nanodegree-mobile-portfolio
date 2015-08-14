@@ -4,19 +4,20 @@ module.exports = function (grunt) {
 
         pkg: grunt.file.readJSON('package.json'),
 
-        clean: ['E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/prod/index.html',
-                'E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/prod/css',
+        clean: ['E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/index.html',
+                'E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/css',
                 'E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/views/images/pizzeria.jpg',
                 'E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/views/images/scaled/pizzeria.jpg',
-                'E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/views/images/small/pizzeria.jpg'],
+                'E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/views/images/small/pizzeria.jpg',
+                'E:/CAS/Dropbox (CAS)/Udacity/Front-End Web Developer Nanodegree/version-control/frontend-nanodegree-mobile-portfolio/img/profilepic.jpg'],
 
         cssmin: {
             target: {
                 files: [{
                     expand: true,
-                    cwd: 'css',
+                    cwd: 'css-src',
                     src: ['*.css'],
-                    dest: 'prod/css',
+                    dest: 'css',
                     ext: '.min.css'
                 }]
             }
@@ -43,7 +44,8 @@ module.exports = function (grunt) {
                     jpegoptim: true
                 },
                 files: {
-                    'views/images/small/pizzeria.jpg': 'views/images/scaled/pizzeria.jpg'
+                    'views/images/small/pizzeria.jpg': 'views/images/scaled/pizzeria.jpg',
+                    'img/profilepic.jpg': 'img/src/profilepic.jpg'
                 }
             }
         },
@@ -53,13 +55,13 @@ module.exports = function (grunt) {
                 options: {
                     base: './',
                     css: [
-                        'css/style.css'
+                        'css-src/style.css'
                     ],
                     width: 320,
                     height: 570
                 },
-                src: 'index.html',
-                dest: 'prod/index.html'
+                src: 'html-src/index.html',
+                dest: 'index.html'
             }
         }
 
