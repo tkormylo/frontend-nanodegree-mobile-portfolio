@@ -30,6 +30,29 @@ Some useful tips to help you get started:
 
 Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
 
+************************************************
+************************************************
+**                                            **
+**  Thomas Kormylo - Optimization Changes     **
+**                                            **
+************************************************
+************************************************
+
+1. I researched, downloaded, installed, and utilized "GRUNT" as a solution to help optimize the index.html web page. The tasks GRUNT performs are listed below. Please see the gruntfile.js file for details on the tasks and how they are defined.
+ - Clean all necessary directories and files before running grunt tasks to ensure old production files are deleted.
+ - Minify CSS files
+ - Uglify JS files
+ - Resize Images
+ - Optimize Images
+ - Place critical CSS inline (index.html)
+ 
+ 2. Updated master index.html to use minified CSS files
+ 
+ 3. PageInsights score above 90 achived for both mobile and desktop.
+
+
+
+
 ####Part 2: Optimize Frames per Second in pizza.html
 
 To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
@@ -71,3 +94,35 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
 * <a href="http://nicoledominguez.com/portfolio/">http://nicoledominguez.com/portfolio/</a>
 * <a href="http://www.roxannecook.com/">http://www.roxannecook.com/</a>
 * <a href="http://www.84colors.com/portfolio.html">http://www.84colors.com/portfolio.html</a>
+
+
+************************************************
+************************************************
+**                                            **
+**  Thomas Kormylo - FPS Optimization Changes **
+**                                            **
+************************************************
+************************************************
+
+1. After a review of the main.js file I made the following changes.
+ - Update the number of animated pizzas from 200 to 35. The screen is still covered in pizzas, but greatly reduces the load and time to process the animations.
+ - Update the "updatePositions" FOR loop that controls the pizzas location updates to pull out any variables that can be calculated as static to NOT be a part of the FOR loop. Again, the greatly helps with load times as the CPU does not need to re-calculate the same information over and over despite the value(s) remaining static.
+ 
+ 
+ 
+*******************************************************
+*******************************************************
+**                                                   **
+**  Thomas Kormylo - Change Pizza Sizes Optimization **
+**                                                   **
+*******************************************************
+*******************************************************
+
+1. After a review of the main.js file I made the following changes.
+ - Update the "changePizzaSizes" FOR loop so that the following variables are pre-calculated globally as they are static and do not need to be re-calucated with each iteration of the FOR loop.
+	- var ranPizzaContainers = document.querySelectorAll(".randomPizzaContainer");
+	- var numOfPizzaContainers = ranPizzaContainers.length;
+	- var dx = determineDx(ranPizzaContainers[0], size);
+	- var newwidth = (ranPizzaContainers[0].offsetWidth + dx) + 'px';
+
+- After making the above variables "global" and not part of the FOR loop, the pizza sized change time is now under 5ms as directed.
