@@ -451,7 +451,7 @@ var resizePizzas = function(size) {
   // Iterates through pizza elements on the page and changes their widths
 
   // TSK: Pre-calculate variables rather than calculate each iteration of the loop.
-  var ranPizzaContainers = document.querySelectorAll(".randomPizzaContainer");
+  var ranPizzaContainers = document.getElementsByClassName('randomPizzaContainer');
   var numOfPizzaContainers = ranPizzaContainers.length;
   var dx = determineDx(ranPizzaContainers[0], size);
   var newwidth = (ranPizzaContainers[0].offsetWidth + dx) + 'px';
@@ -474,8 +474,11 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+
+// TSK: Move the pizzasDiv variable outside of the FOR loop as it does not need
+// to be calculated with each iteration of the loop.
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -509,12 +512,20 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
+  var items = document.getElementsByClassName('mover');
   var itemsLength = items.length;
   var docBodyScrollTop = (document.body.scrollTop / 1250);
+
+// TSK: Update phase code based on Udacity code review comments and suggestions.
+// Much more efficient code. I agree.
+  var phase = [];
+
+  for (var i = 0; i < 5; i++) {
+    phase.push(Math.sin(docBodyScrollTop + i) * 100);
+  }
+
   for (var i = 0; i < itemsLength; i++) {
-    var phase = Math.sin((docBodyScrollTop) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    items[i].style.left = items[i].basicLeft + phase[i%5] + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.

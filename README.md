@@ -107,6 +107,12 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
 1. After a review of the main.js file I made the following changes.
  - Update the number of animated pizzas from 200 to 35. The screen is still covered in pizzas, but greatly reduces the load and time to process the animations.
  - Update the "updatePositions" FOR loop that controls the pizzas location updates to pull out any variables that can be calculated as static to NOT be a part of the FOR loop. Again, the greatly helps with load times as the CPU does not need to re-calculate the same information over and over despite the value(s) remaining static.
+ - 8/18/2015: Made additional updates as per suggestions of Udacity code review. Items such as how I scan the DOM for certain elements by
+	class name have been improved, FOR loops have been further optimized to remove redundant static calculations, etc.
+ - 8/18/2015: One change that has not been made is to dynamically calculate the number of pizzas to render on the screen based on the "inner height".
+	While the suggestion from Udacity was made. It is not clear to me how this would be implemented or done. The review was classified as a nitpic
+	and at this time the application currently performs well above 60FPS after the other changes were made.
+ - 8/18/2015: Updated styles.css for pizza.html based on Udacity code review to further enhance FPS performance.
  
  
  
